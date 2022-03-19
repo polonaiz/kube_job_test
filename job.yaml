@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: heavy-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: worker
+          image: busybox
+          command: 
+            - "sh"
+            - "-c"
+            - "date;echo start heavy work;sleep 10;date;echo its done;"
+      restartPolicy: Never
+  backoffLimit: 0
